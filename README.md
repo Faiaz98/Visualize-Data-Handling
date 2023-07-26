@@ -1,1 +1,1 @@
-# Visualize-Data-Handling is project where it visualizes how different algorithm's handle'e data which is taken directly from users.
+# Visualize-Data-Handling is a project that visualizes how different algorithms handle data that is taken directly from users.
