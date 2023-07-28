@@ -229,3 +229,57 @@ function ternarySearch() {
 
     searchStep(0, inputList.length - 1);
 }
+
+// Interpolation Search Algorithm Section
+function InterpolationSearch() {
+    const inputList = document.getElementById("interpolation-search-list").value.trim().split(" ").map(Number).sort((a, b) => a - b);
+    const key = parseInt(document.getElementById("interpolation-search-key").value);
+
+    const resultDiv = d3.select("#interpolation-search-result");
+    resultDiv.text("Search...");
+    resultDiv.attr("class", "mt-4 text-gray-700");
+
+    const svg = d3.select("#interpolation-search-result").append("svg")
+        .attr("width", "100%")
+        .attr("height", 200);
+
+    function searchStep(left, right) {
+        if (left <= right && key >= inputList[left] && key <= inputList[right]) {
+            const position = Math.floor(
+                left + ((right - left) / (inputList[right] - inputList[left])) * (key - inputList[left])
+            );
+
+            const xScale = d3.scaleBand().domain(inputList).range([0, inputList.length * 40]);
+
+            svg.selectAll(".bar").remove();
+            svg.selectAll(".bar")
+                .data(inputList)
+                .enter()
+                .append("rect")
+                .attr("x", (d, i) => xScale(d))
+                .attr("y", 0)
+                .attr("width", xScale.bandwidth())
+                .attr("height", 40)
+                .attr("fill", (d, i) => i === position ? "yellow" : "blue")
+                .attr("class", "bar");
+
+            resultDiv.text(`Searching... Current Range: ${inputList.slice(left, right + 1).join(", ")}`);
+            if (inputList[position] === key) {
+                svg.selectAll(".bar")
+                    .attr("fill", (d, i) => i === position ? "green" : "blue");
+                resultDiv.text(`Key '${key}' found at index ${position}`);
+                resultDiv.attr("class", "mt-4 text-green-700");
+            } else if (inputList[position] < key) {
+                searchStep(position + 1, right);
+            } else {
+                searchStep(left, position - 1);
+            }
+        } else {
+            resultDiv.text(`key '${key}' not found.`);
+            resultDiv.attr("class", "mtr-4 text-red-700");
+            svg.selectAll(".bar")
+                .attr("fill", "blue");
+        }
+    }
+    searchStep(0, inputList.length - 1);
+}
