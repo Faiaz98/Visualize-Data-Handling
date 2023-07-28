@@ -6,6 +6,7 @@ Currently added Algorithms:
   2. Binary Search 
   3. Ternary Search
   4. Interpolation Search
+  5. Exponential Search
 
 # New Addition: 28-07-2023
  1. Interpolation Search
