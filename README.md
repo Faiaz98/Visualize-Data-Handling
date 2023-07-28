@@ -9,3 +9,4 @@ Currently added Algorithms:
 
 # New Addition: 28-07-2023
  1. Interpolation Search
+ 2. Exponential Search
