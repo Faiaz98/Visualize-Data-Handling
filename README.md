@@ -5,3 +5,7 @@ Currently added Algorithms:
   1. Bubble Sort
   2. Binary Search 
   3. Ternary Search
+  4. Interpolation Search
+
+# New Addition: 28-07-2023
+ 1. Interpolation Search
