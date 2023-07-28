@@ -283,3 +283,46 @@ function InterpolationSearch() {
     }
     searchStep(0, inputList.length - 1);
 }
+
+// Exponential Search Algorithm Section
+function exponentialSearch() {
+    const inputList = document.getElementById("exponential-search-list").value.trim().split(" ").map(Number).sort((a, b) => a - b);
+    const key = parseInt(document.getElementById("exponential-search-key").value);
+
+    const resultDiv = d3.select("#exponential-search-result");
+    resultDiv.text("Searching...");
+    resultDiv.attr("class", "mt-4 text-gray-700");
+
+    let bound = 1;
+    while (bound < inputList.length && inputList[bound] < key) {
+        bound *= 2;
+    }
+
+    let left = bound / 2;
+    let right = Math.min(bound, inputList - 1);
+    let found = false;
+
+    function searchStep() {
+        if (left <= right) {
+            const mid = Math.floor((left + right) / 2);
+            resultDiv.text(`Searching... Current Range: ${inputList.slice(left, right + 1).join(", ")}`);
+            if (inputList[mid] === key) {
+                resultDiv.text(`Key '${key}' found at index ${mid}`);
+                resultDiv.attr("class", "mt-4 text-green-700");
+                found = true;
+            } else if (inputList[mid] < key) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+            setTimeout(searchStep, 1000);
+        } else {
+            if (!found) {
+                resultDiv.text(`Key '${key}' not found.`);
+                resultDiv.attr("class", "mt-4 text-red-700");
+            }
+        }
+    }
+
+    searchStep();
+}
