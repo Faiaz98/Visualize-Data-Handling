@@ -62,6 +62,20 @@
                 <label for="interpolation-search-key" class="block font-medium">Enter the key to search:</label>
                 <input type="text" id="interpolation-search-key" class="w-full border rounded px-3 py-2 mt-2">
             </div>
+            <!-- Exponential Search Section -->
+            <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4">Exponential Search</h2>
+                <div>
+                    <label for="exponential-search-list" class="block font-medium">Enter a sorted list of numbers:</label>
+                    <input type="text" id="exponential-search-list" class="w-full border rounded px-3 py-2 mt-2">
+                </div>
+                <div class="mt-4">
+                    <label for="exponential-search-key" class="block font-medium">Enter the key to search:</label>
+                    <input type="text" id="exponential-search-key" class="w-full border rounded px-3 py-2 mt-2">
+                </div>
+                <button onclick="exponentialSearch()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Search</button>
+                <div id="exponential-search-result" class="mt-4 text-gray-700"></div>
+            </div>
             <button onclick="interpolationSearch()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Search</button>
             <div id="interpolation-search-result" class="mt-4 text-gray-700"></div>
         </div>
