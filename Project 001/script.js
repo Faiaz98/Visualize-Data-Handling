@@ -326,3 +326,85 @@ function exponentialSearch() {
 
     searchStep();
 }
+
+// Selection Sort Algorithm Section
+function selectionSort() {
+    const input = document.getElementById("selection-sort-input").value;
+    const elements = input.trim().split(" ").map(Number);
+
+    const resultDiv = d3.select("#selection-sort-result");
+    resultDiv.selectAll("*").remove();
+    const svg = resultDiv.append("svg");
+    const barWidth = 40;
+    const xScale = d3.scaleBand().domain(elements).range([0, elements.length * barWidth]);
+    const yScale = d3.scaleLinear().domain([0, d3.max(elements)]).range([0, 200]);
+
+    function updateVisualization(arr) {
+        const svg = resultDiv.select("svg");
+        svg.selectAll("*").remove();
+
+        svg.selectAll("rect")
+            .data(arr)
+            .enter()
+            .append("rect")
+            .attr("x", (d, i) => xScale(i))
+            .attr("y", 200)
+            .attr("width", xScale.bandwidth())
+            .attr("height", 0)
+            .attr("fill", "blue")
+            .attr("class", "original-bar")
+            .transition()
+            .duration(300)
+            .ease(d3.easeLinear)
+            .attr("y", (d) => 200 - yScale(d))
+            .attr("height", (d) => yScale(d));
+
+        svg.selectAll("text")
+            .data(arr)
+            .enter()
+            .append("text")
+            .text((d) => d)
+            .attr("x", (d, i) => xScale(i) + xScale.bandwidth() / 2)
+            .attr("y", (d) => 200 - yScale(d) - 5)
+            .attr("text-anchor", "middle")
+            .attr("fill", "white")
+            .attr("class", "original-label")
+            .transition()
+            .duration(300)
+            .ease(d3.easeLinear)
+            .attr("y", (d) => 200 - yScale(d) - 15);
+
+        setTimeout(() => {
+            svg.selectAll(".original-bar")
+                .attr("class", "sorted-bar")
+                .attr("fill", "green")
+
+            svg.selectAll(".original-label")
+                .attr("class", "sorted-label")
+                .attr("fill", "white");
+        }, 300 * arr.length);
+    }
+
+    function performSelectionSort(arr) {
+        const n = arr.length;
+        for (let i = 0; i < n - 1; i++) {
+            let minIndex = i;
+            for (j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            const temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+
+            svg.selectAll("*").remove();
+            updateVisualization(arr);
+            setTimeout(() => {
+                performSelectionSort(arr);
+            }, 500);
+        }
+    }
+
+    performSelectionSort(elements);
+}
