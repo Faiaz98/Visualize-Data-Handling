@@ -8,6 +8,10 @@ Currently added Algorithms:
   4. Interpolation Search
   5. Exponential Search
 
-# New Addition: 28-07-2023
+# New Addition: 28-07-2023 (dd-mm-yyyy)
  1. Interpolation Search
  2. Exponential Search
+ 3. Selection sort
+
+# New Addition: 08-10-2023 (dd-mm-yyyy)
+ 1. Sentinel Linear Search

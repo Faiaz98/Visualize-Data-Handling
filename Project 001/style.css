@@ -27,7 +27,7 @@ button {
 #hash-table,
 #binary-search-result,
 #bubble-sort-result,
-#ternary-search-result {
+#ternary-search-result #linear-search-result {
     margin-top: 10px;
     padding: 10px;
     border: 1px solid #ccc;

@@ -408,3 +408,40 @@ function selectionSort() {
 
     performSelectionSort(elements);
 }
+
+// Sentinel Linear Search Algorithm Section
+function SentinelLinearSearch() {
+    const inputList = document.getElementById("linear-search-input").value.trim().split(" ").map(Number);
+    const key = parseInt(document.getElementById("search-key").value);
+
+    // Append elements to SVG for visualization
+    const svg = d3.select("#linear-search-result").append("svg")
+        .attr("width", "100%")
+        .attr("height, 50")
+
+    let found = false;
+
+    // Add elements to visualization
+    svg.selectAll("circle")
+        .data(inputList)
+        .enter().append("circle")
+        .attr("cx", (d, i) => i * 50 + 25)
+        .attr("cy", 25)
+        .attr("r", 20)
+        .attr("fill", "blue")
+        .attr("class", "search-circle")
+        .transition()
+        .duration(500)
+        .attr("fill", (d) => (d === key) ? "green" : "blue");
+
+    // Perform sentinel linear search
+    for (let i = 0; i < inputList.length; i++) {
+        if (inputList[i] === key) {
+            found = true;
+            d3.select(".search-circle:nth-child(" + (i + 1) + ")")
+                .attr("fill", "green")
+                .attr("class", " found-circle");
+            break;
+        }
+    }
+}

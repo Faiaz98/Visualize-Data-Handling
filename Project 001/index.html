@@ -79,6 +79,20 @@
             <button onclick="interpolationSearch()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Search</button>
             <div id="interpolation-search-result" class="mt-4 text-gray-700"></div>
         </div>
+        <!-- Sentinel Linear Search Section -->
+        <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-4">Sentinel Linear Search</h2>
+            <div>
+                <label for="linear-search-input" class="block font-medium">Enter numbers separated by space:</label>
+                <input type="text" id="linear-search-input" class="w-full border rounded px-3 py-2 mt-2">
+            </div>
+            <div class="mt-4">
+                <label for="search-key" class="block font-medium">Enter search key:</label>
+                <input type="number" id="search-key" class="w-full border rounded px-3 py-2 mt-2">
+            </div>
+            <button onclick="sentinelLinearSearch()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Search</button>
+            <div id="linear-search-result" class="mt-4 text-gray-700"></div>
+        </div>
     </div>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="script.js"></script>
